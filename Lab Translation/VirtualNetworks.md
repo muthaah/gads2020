@@ -16,7 +16,15 @@ In this lab, you learn how to perform the following tasks:
   - View the firewall rules
   
 ## Task 2. Create an auto mode network with firewall rules
-  - Create an auto mode network with two VM instances 
+  - Create an auto mode network with two VM instances.
+    
+### Hint
+    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
+  
+    ` gcloud config set project qwiklabs-gcp-04-8133a1a506b2 `
+  
+  - Enter the below commands one after the other to create the Network and firewall rules 
+  
     ```
     	gcloud compute networks create mynetwork --project=qwiklabs-gcp-04-8133a1a506b2 --description=mynetwork --subnet-mode=auto --bgp-routing-mode=regional
 
@@ -36,7 +44,7 @@ In this lab, you learn how to perform the following tasks:
    
   - Create a VM instance in the europe-west1 region.
     ```
-	gcloud beta compute --project=qwiklabs-gcp-04-8133a1a506b2 instances create mynet-eu-vm --zone=europe-west1-c --machine-type=n1-standard-1 --subnet=mynetwork --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=948991764381-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --image=debian-9-stretch-v20200902 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=mynet-eu-vm --reservation-affinity=any
+	gcloud compute --project=qwiklabs-gcp-04-8133a1a506b2 instances create mynet-eu-vm --zone=europe-west1-c --machine-type=n1-standard-1 --subnet=mynetwork --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=948991764381-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --image=debian-9-stretch-v20200902 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=mynet-eu-vm --reservation-affinity=any
 
     ```
 
@@ -58,7 +66,29 @@ In this lab, you learn how to perform the following tasks:
  
 ## Task 3. Create custom mode networks    
   - create two additional custom networks, managementnet and privatenet, along with firewall rules to allow SSH, ICMP, and RDP ingress traffic and VM instances
-      
+    
+    - Create the managementnet network and Subnet
+    
+    ` gcloud compute networks create managementnet --project=qwiklabs-gcp-04-8133a1a506b2 --subnet-mode=custom --bgp-routing-mode=regional `
+
+    ` gcloud compute networks subnets create managementsubnet-us --project=qwiklabs-gcp-04-8133a1a506b2 --range=10.130.0.0/20 --network=managementnet --region=us-central1 `
+    
+    ```
+    
+    - Create the privatenet network    
+    
+    ` gcloud compute networks create privatenet --subnet-mode=custom `   
     	
+    - Create the privatesubnet-us subnet, run the following command:
+
+    	` gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-central1 --range=172.16.0.0/24 `
+
+    - Create the privatesubnet-eu subnet, run the following command:
+
+    	` gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 `
+
+  - list the available VPC networks, run the following command
+
+	` gcloud compute networks list `
 	
 		
