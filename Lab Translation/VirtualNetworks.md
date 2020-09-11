@@ -10,7 +10,12 @@ In this lab, you learn how to perform the following tasks:
   - Create VM instances using Compute Engine
   - Explore the connectivity for VM instances across VPC networks
  
- 
+### Hint
+    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
+  
+    ` gcloud config set project qwiklabs-gcp-04-8133a1a506b2 `
+
+
 ## Task 1: Explore the default network using the GCP Console
   - View the default network
   - View the subnets
@@ -19,12 +24,7 @@ In this lab, you learn how to perform the following tasks:
  
 ## Task 2. Create an auto mode network with firewall rules
   - Create an auto mode network with two VM instances.
-    
-### Hint
-    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
-  
-    ` gcloud config set project qwiklabs-gcp-04-8133a1a506b2 `
-  
+      
   - Enter the below commands one after the other to create the Network and firewall rules 
   
     ```
