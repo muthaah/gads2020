@@ -7,7 +7,7 @@ In this lab, you explore the available options for VMs and see the differences b
   - Create advanced VMs
 
 ### Hint
-    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
+  - nAlthough not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
   
     ` gcloud config set project qwiklabs-gcp-00-12ae7b9a6074 `
 

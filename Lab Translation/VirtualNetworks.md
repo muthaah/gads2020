@@ -11,7 +11,7 @@ In this lab, you learn how to perform the following tasks:
   - Explore the connectivity for VM instances across VPC networks
  
 ### Hint
-    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
+  - Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
   
     ` gcloud config set project qwiklabs-gcp-04-8133a1a506b2 `
 

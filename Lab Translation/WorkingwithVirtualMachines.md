@@ -10,11 +10,11 @@ In this lab, you learn how to perform the following tasks:
   - Schedule regular backups
 
 ### Hint
-    Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
+  - Although not documented, it is always a good idea to start all your command line work by setting your current and active cloud project i.e init your project on cloudshell
   
     ` gcloud config set project qwiklabs-gcp-04-8133a1a506b2 `
 
-    The Cloud Storage API seems to have changed and requires e4xtra permissions, to get this enter the command below inside the VM instance that you will created and follow the   instruxtions
+  - The Cloud Storage API seems to have changed and requires e4xtra permissions, to get this enter the command below inside the VM instance that you will created and follow the   instructions
     
     ` gcloud auth login `
     
