@@ -132,7 +132,7 @@ In this lab, you learn how to perform the following tasks:
       ```
      
     - Privatenet-us-vm in privatesubnet-us
-
+    
       ```
    	gcloud compute instances create privatenet-us-vm --zone=us-central1-c --machine-type=f1-micro --subnet=privatesubnet-us
       ```
