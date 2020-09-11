@@ -72,9 +72,7 @@ In this lab, you learn how to perform the following tasks:
     ` gcloud compute networks create managementnet --project=qwiklabs-gcp-04-8133a1a506b2 --subnet-mode=custom --bgp-routing-mode=regional `
 
     ` gcloud compute networks subnets create managementsubnet-us --project=qwiklabs-gcp-04-8133a1a506b2 --range=10.130.0.0/20 --network=managementnet --region=us-central1 `
-    
-    ```
-    
+      
     - Create the privatenet network    
     
     ` gcloud compute networks create privatenet --subnet-mode=custom `   
