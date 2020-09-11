@@ -1,4 +1,4 @@
-# LAB : Essential Google Cloud Infrastructure: Foundation - 
+# LAB : Essential Google Cloud Infrastructure: Foundation - Creating Virtual Machines
 
 ### Objectives
 In this lab, you explore the available options for VMs and see the differences between locations and learn how to perform the following tasks:
