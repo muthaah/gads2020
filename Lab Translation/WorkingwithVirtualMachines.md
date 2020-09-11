@@ -146,7 +146,7 @@ The Minecraft server runs on top of the Java Virtual Machine (JVM), so it requir
 	#!/bin/bash
 	screen -r mcs -X stuff '/save-all\n/save-off\n'
 	/usr/bin/gsutil cp -R ${BASH_SOURCE%/*}/world gs://${YOUR_BUCKET_NAME}-minecraft-backup/$(date "+%Y%m%d-%H%M%S")-world
-	screen -r mcs -X stuff '/save-on\n'/
+	screen -r mcs -X stuff '/save-on\n'
     ```
 
     Press Ctrl+O, ENTER to save the file, and press Ctrl+X to exit nano.
