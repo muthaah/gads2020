@@ -10,11 +10,13 @@ In this lab, you learn how to perform the following tasks:
   - Create VM instances using Compute Engine
   - Explore the connectivity for VM instances across VPC networks
  
+ 
 ## Task 1: Explore the default network using the GCP Console
   - View the default network
   - View the subnets
   - View the firewall rules
-  
+ 
+ 
 ## Task 2. Create an auto mode network with firewall rules
   - Create an auto mode network with two VM instances.
     
@@ -65,7 +67,7 @@ In this lab, you learn how to perform the following tasks:
 
  
 ## Task 3. Create custom mode networks    
-  - create two additional custom networks, managementnet and privatenet, along with firewall rules to allow SSH, ICMP, and RDP ingress traffic and VM instances
+  - Create two additional custom networks, managementnet and privatenet, along with firewall rules to allow SSH, ICMP, and RDP ingress traffic and VM instances
     
     - Create the managementnet network and Subnet
     
@@ -89,10 +91,87 @@ In this lab, you learn how to perform the following tasks:
 
     - Create the privatesubnet-eu subnet, run the following command:
 
-    	` gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 `
+    	```
+    	gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 
+    	```
 
-  - list the available VPC networks, run the following command
+  - List the available VPC networks, run the following command
 
 	` gcloud compute networks list `
+	
+  - List the available VPC subnets (sorted by VPC network), run the following command:
+
+	` gcloud compute networks subnets list --sort-by=NETWORK `
+
+  - Create the firewall rules for managementnet
+    
+    - Create firewall rules to allow SSH, ICMP, and RDP ingress traffic to VM instances on the managementnet network.
+	
+	```
+	gcloud compute --project=qwiklabs-gcp-04-8133a1a506b2 firewall-rules create managementnet-allow-icmp-ssh-rdp --description="Allow icmp, ssh rdp Traffic" --direction=INGRESS --priority=1000 --network=managementnet --action=ALLOW --rules=tcp:22,tcp:3389,icmp --source-ranges=0.0.0.0/0
+	```
+
+  - Create the firewall rules for privatenet
+    - Create the firewall rules for privatenet network 
+	
+	```
+	gcloud compute firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=privatenet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0
+	```
+
+  - List all the firewall rules (sorted by VPC network), run the following command:
+
+	` gcloud compute firewall-rules list --sort-by=NETWORK `
+	
+
+  - Create two VM instances:
+
+    - managementnet-us-vm in managementsubnet-us
+
+      ```
+	gcloud compute --project=qwiklabs-gcp-04-8133a1a506b2 instances create managementnet-us-vm --zone=us-central1-c --machine-type=f1-micro --subnet=managementsubnet-us --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=948991764381-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --image=debian-9-stretch-v20200902 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=managementnet-us-vm --reservation-affinity=any
+	  
+      ```
+     
+    - Privatenet-us-vm in privatesubnet-us
+      ```
+   	gcloud compute instances create privatenet-us-vm --zone=us-central1-c --machine-type=f1-micro --subnet=privatesubnet-us
+    
+      ```
+
+  - To list all the VM instances (sorted by zone), run the following command:
+
+	` gcloud compute instances list --sort-by=ZONE `
+     
+
+## Task 4. Explore the connectivity across networks
+
+  - Verify connectivity for the VM instances, Note the external IP addresses for mynet-eu-vm, managementnet-us-vm, and privatenet-us-vm.
+  
+    - Test connectivity to mynet-eu-vm's internal IP from mynet-us-vm instance
+    
+    From the cloud shell enter the command below to connect to the mynet-us-vm instance
+    
+    ` gcloud compute ssh mynet-us-vm `
+    
+    test connectivity to mynet-eu-vm's external IP, run the following command, replacing mynet-eu-vm's external IP
+
+    ` ping -c 3 <Enter mynet-eu-vm's external IP here> `
+
+    This should work!
+
+    To test connectivity to managementnet-us-vm's external IP, run the following command, replacing managementnet-us-vm's external IP:
+
+    ping -c 3 <Enter managementnet-us-vm's external IP here>
+
+    This should work!
+
+    To test connectivity to privatenet-us-vm's external IP, run the following command, replacing privatenet-us-vm's external IP:
+
+    ping -c 3 <Enter privatenet-us-vm's external IP here>
+
+    This should work!
+
+   
+### END OF TRANSLATION	
 	
 		
