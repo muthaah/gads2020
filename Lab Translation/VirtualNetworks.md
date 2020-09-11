@@ -69,21 +69,21 @@ In this lab, you learn how to perform the following tasks:
     
     - Create the managementnet network and Subnet
     
-    ` gcloud compute networks create managementnet --project=qwiklabs-gcp-04-8133a1a506b2 --subnet-mode=custom --bgp-routing-mode=regional `
+    ``` gcloud compute networks create managementnet --project=qwiklabs-gcp-04-8133a1a506b2 --subnet-mode=custom --bgp-routing-mode=regional ```
 
-    ` gcloud compute networks subnets create managementsubnet-us --project=qwiklabs-gcp-04-8133a1a506b2 --range=10.130.0.0/20 --network=managementnet --region=us-central1 `
+    ``` gcloud compute networks subnets create managementsubnet-us --project=qwiklabs-gcp-04-8133a1a506b2 --range=10.130.0.0/20 --network=managementnet --region=us-central1 ```
       
     - Create the privatenet network    
     
-    ` gcloud compute networks create privatenet --subnet-mode=custom `   
+    ``` gcloud compute networks create privatenet --subnet-mode=custom ```  
     	
     - Create the privatesubnet-us subnet, run the following command:
 
-    	` gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-central1 --range=172.16.0.0/24 `
+    	``` gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-central1 --range=172.16.0.0/24 ```
 
     - Create the privatesubnet-eu subnet, run the following command:
 
-    	` gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 `
+    	``` gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 ``
 
   - list the available VPC networks, run the following command
 
